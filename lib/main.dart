@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:one_min_english/view/screens/dictionary_screen.dart';
 import 'package:one_min_english/view/screens/home_screen.dart';
 import 'package:one_min_english/view/screens/login_screen.dart';
+import 'package:one_min_english/view/screens/profile_screen.dart';
 import 'package:one_min_english/view/screens/reset_your_password.dart';
 import 'package:one_min_english/view/screens/sign_up_screen.dart';
 import 'package:one_min_english/view/screens/splash_screen.dart';
+import 'package:one_min_english/view/screens/take_challange_screen.dart';
+import 'package:one_min_english/view/screens/translate_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,10 +30,27 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
-          home: Homescreen(),
+          home: SplashScreen(),
+          routes: {
+            SplashScreen.routeName: (context) => SplashScreen(),
+            LoginScreen.routeName: (context) => LoginScreen(),
+            SignUpScreen.routeName: (context) => SignUpScreen(),
+            ResetYourPassWord.routeName: (context) => ResetYourPassWord(),
+            Homescreen.routeName: (context) => Homescreen(),
+            DictionaryScreen.routeName: (context) => DictionaryScreen(),
+            TranslateScreen.routeName: (context) => TranslateScreen(),
+            MyProfileScreen.routeName: (context) => MyProfileScreen(),
+            TackeChallengeScreen.routeName: (context) => TackeChallengeScreen(),
+          },
         );
       },
 
     );
   }
 }
+
+
+
+
+
+

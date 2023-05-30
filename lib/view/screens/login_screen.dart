@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:one_min_english/view/screens/sign_up_screen.dart';
 import 'package:one_min_english/view/utils/appcolor.dart';
 import 'package:one_min_english/view/utils/text_style/app_text_style.dart';
 
@@ -7,6 +8,10 @@ import '../widgets/app_input_decoration.dart';
 import '../widgets/app_stack.dart';
 
 class LoginScreen extends StatefulWidget {
+
+  static const String routeName = '/login_screen';
+
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -89,7 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 251.w,
                           height: 50.h,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context, SignUpScreen.routeName);
+                            },
                             child: AuthPageHeaderText('Sign in', 22.sp),
                             style: ButtonStyle(
                               side: MaterialStateProperty.all<BorderSide>(

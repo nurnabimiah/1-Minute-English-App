@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:one_min_english/view/screens/reset_your_password.dart';
 
 import '../utils/appcolor.dart';
 import '../utils/text_style/app_text_style.dart';
@@ -9,6 +10,10 @@ import '../widgets/app_input_decoration.dart';
 import '../widgets/app_stack.dart';
 
 class SignUpScreen extends StatefulWidget {
+
+  static const String routeName = '/signUp_screen';
+
+
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
@@ -99,7 +104,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           width: 251.w,
                           height: 50.h,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context,ResetYourPassWord.routeName);
+                            },
                             child: AuthPageHeaderText('Sign up', 22.sp),
                             style: appElevatedButtonStyle(),
                           ),

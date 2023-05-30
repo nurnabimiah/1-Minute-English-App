@@ -4,10 +4,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:one_min_english/data/models/word_model_class.dart';
+import 'package:one_min_english/view/screens/dictionary_screen.dart';
 import 'package:one_min_english/view/utils/appcolor.dart';
 import 'package:one_min_english/view/utils/text_style/app_text_style.dart';
+import 'package:one_min_english/view/widgets/my_drawer.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 class Homescreen extends StatefulWidget {
+
+  static const String routeName = '/home_screen';
   const Homescreen({Key? key}) : super(key: key);
 
   @override
@@ -16,8 +22,30 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
 
+
+  static const String routeName = '/home_screen';
+
   late DateTime time;
   late String formattedTime;
+
+
+  List<WordModel> words = <WordModel>[];
+  late WordDataGridSource employeeDataSource;
+
+/*  @override
+  void initState() {
+    super.initState();
+    words = getWord();
+    employeeDataSource = WordDataGridSource(wordDatas: words);
+  }*/
+
+
+  @override
+  void didChangeDependencies() {
+    words = getWord();
+    employeeDataSource = WordDataGridSource(wordDatas: words);
+    super.didChangeDependencies();
+  }
 
   @override
   void initState() {
@@ -67,6 +95,7 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       backgroundColor: AppColor.appBackgroundColor,
       appBar: AppBar(
         elevation: 0,
@@ -109,13 +138,57 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
               SizedBox(height: 30.h,),
-              AppTextStyle(text: 'Today words', color:AppColor.appPrimaryColor, fontWeight: FontWeight.w600, size: 20.sp)
+              AppTextStyle(text: 'Today words', color:AppColor.appPrimaryColor, fontWeight: FontWeight.w600, size: 20.sp),
+
+              Padding(
+                padding:  EdgeInsets.all(32.0),
+                child: SfDataGrid(
+                  headerGridLinesVisibility: GridLinesVisibility.both,
+                  gridLinesVisibility: GridLinesVisibility.both,
+                  shrinkWrapColumns: true,
+
+                  source: employeeDataSource,
+                  //columnWidthMode: ColumnWidthMode.fill,
+                  columns: <GridColumn>[
+                    GridColumn(
+                      columnName: 'Word',
+                      label: Container(
+                        alignment: Alignment.center,
+                        child:AppTextStyle(text: 'Word', color: AppColor.appPrimaryColor, fontWeight: FontWeight.w500, size: 18.sp,) ,
+                      ),
+                    ),
+                    GridColumn(
+                      columnName: 'Synoname',
+                      label: Container(
+                        alignment: Alignment.center,
+                        child: AppTextStyle(text: 'Synonym', color: AppColor.appPrimaryColor, fontWeight: FontWeight.w500, size: 18.sp,)
+                      ),
+                    ),
+                    GridColumn(
+                      columnWidthMode: ColumnWidthMode.fill,
+                      columnName: 'Antonyms',
+                      label: Container(
+
+                        alignment: Alignment.center,
+                         child: AppTextStyle(text: 'Antonym', color: AppColor.appPrimaryColor, fontWeight: FontWeight.w500, size: 18.sp,)
+                      ),
+                    ),
+                  ],
+                ),
+              ),
 
 
 
 
 
 
+
+
+
+
+             TextButton(onPressed: (){
+               Navigator.pushNamed(context,DictionaryScreen.routeName);
+             }, child: Text('Next'))
 
 
 

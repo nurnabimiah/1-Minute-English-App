@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:one_min_english/view/screens/home_screen.dart';
 import 'package:one_min_english/view/widgets/app_eleveted_buttonStyle.dart';
 
 import '../utils/appcolor.dart';
@@ -9,6 +10,7 @@ import '../widgets/app_input_decoration.dart';
 import '../widgets/app_stack.dart';
 
 class ResetYourPassWord extends StatefulWidget {
+  static const String routeName = '/resetYourPass_screen';
   const ResetYourPassWord({Key? key}) : super(key: key);
 
   @override
@@ -72,7 +74,9 @@ class _ResetYourPassWordState extends State<ResetYourPassWord> {
                           width: 251.w,
                           height: 50.h,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(context,Homescreen.routeName);
+                            },
                             child: AuthPageHeaderText('Send', 22.sp),
                             style: ButtonStyle(
                               side: MaterialStateProperty.all<BorderSide>(
